@@ -2,7 +2,7 @@ package com;
 
 public class Remote {
 	
-	public void turnOn() {
+	void turnOn() {
 		System.out.println("Turning on....");
 	}
 	

@@ -7,13 +7,151 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class StreamsPractice2 {
 	
 	 public static void main(String[] args) {
 		 
-		 List<Integer> nums = Arrays.asList(1, 2, 3, 4);
+
+		 groupingByFunctuions();
+	}
+
+	 private static void groupingByFunctuions() {
+		String langauge = "JAVA";
+		 
+		 Map<Character,Long> collect = langauge
+		 	.chars()
+		 	.mapToObj(c -> (char) c)
+		 	.collect(Collectors.groupingBy(c -> c , Collectors.counting()));
+		 
+		 System.out.println(collect);
+		 
+		 
+		 String names = "Fayaz Shanmuk Fayaz Sai Sai Sai";
+		 
+		 Map<String,Long> collect2 = Arrays.stream(names.split(" "))
+		  		.collect(Collectors.groupingBy(str -> str, Collectors.counting()));
+		 
+		 System.out.println(collect2);
+		 
+		 
+		 
+		 
+		 String company = "FRONTLINES";
+		 
+		 Map<Character,Long> collect3 = company
+		 	.chars()
+		 	.mapToObj(c -> (char) c)
+		 	.collect(Collectors.groupingBy(c -> c, () -> new TreeMap<>()  , Collectors.counting()));
+		 
+		 System.out.println(collect3);
+	 }
+
+	 private static void joiningOperations() {
+		String name = "FRONTLINESEDUTECH";
+		 
+		 List<Character> list = name
+							 	.chars()
+							 	.mapToObj(c -> (char) c)
+							 	.toList();
+		 
+		 System.out.println(list);
+		 
+		 // Remove duplicates 
+		 
+		 List<Character> list2 = name
+		 	.chars()
+		 	.distinct()
+		 	.mapToObj(c -> (char) c)
+		 	.toList();
+		 
+		 System.out.println(list2);
+		 
+		 
+		 // "F" , "R" , "O"
+		 // "FRO"
+		 String collect = name
+		 	.chars()
+		 	.distinct()
+		 	.mapToObj(c -> String.valueOf((char) c))
+		 	.collect(Collectors.joining());
+		 System.out.println(name);
+		 System.out.println(collect);
+		 
+		 // FRONTLINESEDUTECH
+		 // F,R,O,N,T,L,I,N,E,S,E,D,U,T,E,C,H
+		 
+		 // F  R
+		 // F,R,O
+		 String collect2 = name
+		 	.chars()
+		 	.mapToObj(c -> String.valueOf((char) c))
+		 	.collect(Collectors.joining("-"));
+		 System.out.println(collect2);
+		 
+		 String name2 = "FRONT LINES EDUTECH";
+		 
+		 String collect3 = name2
+		 	.chars()
+		 	.filter(c -> c!= ' ')
+		 	.mapToObj(c -> String.valueOf((char) c))
+		 	.collect(Collectors.joining("-"));
+		 System.out.println(collect3);
+		 
+		 
+		 // FRONT
+		 // [F,R,O,N,T]
+		 String name3 = "FRONT";
+		 String collect4 = name3
+		 	.chars()
+		 	.mapToObj(c -> String.valueOf((char) c))
+		 	.collect(Collectors.joining("," , "[" , "]"));
+		 
+		 System.out.println(collect4);
+		 
+		 
+		 
+		 String name5 = "FRONT LINES EDUTECH";
+		 
+		 // FRONT-LINES-EDUTECH
+		 
+		 String[] split = name5.split(" ");
+		 
+		 String collect5 = Arrays.stream(split)
+		 	.collect(Collectors.joining("-"));
+		 
+		 System.out.println(collect5);
+		 
+		 
+		 
+		 String name6 = "Java Is a Very Very Difficult Language";
+		 
+		// Java-Is-a-Very-Difficult
+		 
+		 
+		 String[] split2 = name6.split(" ");
+		 
+		 String collect6 = Arrays.stream(split2)
+		 	.distinct()
+		 	.collect(Collectors.joining("-"));
+		 
+		 System.out.println(collect6);
+		 
+		 // JIaVVDL
+		 
+		 String[] split3 = name6.split(" ");
+		 
+		 String collect7 = Arrays.stream(split3)
+		 	.map(str -> String.valueOf(str.charAt(0)))
+		 	.collect(Collectors.joining());
+		 
+		 System.out.println(collect7);
+	 }
+
+	 private static void reduceOperatiosn() {
+		List<Integer> nums = Arrays.asList(1, 2, 3, 4);
 		 
 		 int sum = 0;
 		 for(int num : nums) {
@@ -49,9 +187,7 @@ public class StreamsPractice2 {
 		 	.reduce("" , (a,b) -> a + " " + b)
 		 	.trim();
 		 System.out.println(company);
-		 
-		
-	}
+	 }
 
 	 private static void parallelStreams() {
 		List<String> names = Arrays.asList("FLM", "Java", "Full", "Stack", "June", "2026");

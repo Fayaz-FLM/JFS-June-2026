@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Aadhar {
@@ -19,6 +20,9 @@ public class Aadhar {
 	private int aadharNumber;
 	
 	private LocalDate issuedAt;
+	
+	@OneToOne(mappedBy = "aadhar")
+	private Citizen citizen;
 	
 	public Aadhar() {
 		
@@ -57,6 +61,14 @@ public class Aadhar {
 
 	public void setIssuedAt(LocalDate issuedAt) {
 		this.issuedAt = issuedAt;
+	}
+	
+	public Citizen getCitizen() {
+		return citizen;
+	}
+
+	public void setCitizen(Citizen citizen) {
+		this.citizen = citizen;
 	}
 
 	@Override

@@ -25,9 +25,17 @@ public class OneToOne {
 //		
 //		session.persist(citizen);
 		
+//		Aadhar aadhar = session.find(Aadhar.class, 1);
+//		
+//		System.out.println(aadhar);
+//		System.out.println(aadhar.getCitizen());
+		
+		
 		Citizen citizen = session.find(Citizen.class, 2);
 		
 		System.out.println(citizen);
+		
+		System.out.println(citizen.getAadhar());
 		
 		session.getTransaction().commit();
 		
